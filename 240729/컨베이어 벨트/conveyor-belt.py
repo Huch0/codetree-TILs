@@ -5,7 +5,7 @@ belt.append(list(map(int, input().split())))
 
 
 for i in range(t):
-    tmp = belt[1][i - 1]
+    tmp = belt[1][- 1]
     # Push second line to right
     for i in range(n - 2, -1, -1):
         belt[1][i + 1] = belt[1][i]
