@@ -28,15 +28,18 @@ for time in range(t):
 
 
     # Eliminate overlapping beads
+    visited = set()
     remain_beads = []
     for b1 in beads:
-        duplicates = []
-        for b2 in beads:
-            if b1 == b2:
-                duplicates.append(b2)
-        
-        if len(duplicates) == 1:
-            remain_beads.append(b1)
+        if b1 not in visited:
+            visited.add(b1)
+            duplicates = []
+            for b2 in beads:
+                if b1 == b2:
+                    duplicates.append(b2)
+            
+            if len(duplicates) == 1:
+                remain_beads.append(b1)
 
     beads = remain_beads
     # print(remain_beads)
