@@ -30,6 +30,7 @@ for time in range(t):
         if bead not in visited:
             visited.add(bead)
             remain_beads.append(bead)
+    beads = remain_beads
 
 # Count the number of remaining beads
 print(len(beads))
