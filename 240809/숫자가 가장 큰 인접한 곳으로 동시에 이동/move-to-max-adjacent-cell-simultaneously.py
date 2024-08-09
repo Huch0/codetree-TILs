@@ -38,5 +38,7 @@ for time in range(t):
         if len(duplicates) == 1:
             remain_beads.append(b1)
 
+    beads = remain_beads
+
 # Count the number of remaining beads
 print(len(beads))
