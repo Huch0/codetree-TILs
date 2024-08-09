@@ -1,4 +1,4 @@
-from collections import Counter
+from collections import defaultdict
 
 n, m, t = map(int, input().split())
 grid = []
@@ -11,7 +11,7 @@ for _ in range(m):
 
 directions = [(-1, 0), (1, 0), (0, -1), (0, 1)]
 for time in range(t):
-    new_beads = []
+    new_beads = defaultdict(int)
     # Move beads
     for r, c in beads:
         max_nx, max_ny = r, c
@@ -25,19 +25,10 @@ for time in range(t):
                     max_nx, max_ny = nx, ny
                     max_num = grid[nx][ny]
         
-        new_beads.append((max_nx, max_ny))
-
-
+        new_beads[(max_nx, max_ny)] += 1
+    
     # Eliminate overlapping beads
-    counter = Counter(new_beads)
-    # print(counter)
-    remain_beads = []
-    for bead, n in counter.items():
-        if n == 1:
-            remain_beads.append(bead)
-
-    beads = remain_beads
-    # print(remain_beads)
+    beads = [beads for beads, n in new_beads.items() if n == 1]
 
 # Count the number of remaining beads
 print(len(beads))
