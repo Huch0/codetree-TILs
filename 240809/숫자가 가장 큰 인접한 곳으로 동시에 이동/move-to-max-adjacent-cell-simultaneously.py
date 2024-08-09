@@ -1,3 +1,5 @@
+from collections import Counter
+
 n, m, t = map(int, input().split())
 grid = []
 for _ in range(n):
@@ -5,14 +7,13 @@ for _ in range(n):
 
 beads = []
 for _ in range(m):
-    beads.append(tuple(map(int, input().split())))
+    beads.append(tuple(map(lambda x: int(x) - 1, input().split())))
 
 directions = [(-1, 0), (1, 0), (0, -1), (0, 1)]
 for time in range(t):
     new_beads = []
     # Move beads
     for r, c in beads:
-        r, c = r - 1, c - 1
         max_nx, max_ny = r, c
         max_num = 0
 
@@ -28,18 +29,12 @@ for time in range(t):
 
 
     # Eliminate overlapping beads
-    visited = set()
+    counter = Counter(new_beads)
+    # print(counter)
     remain_beads = []
-    for b1 in beads:
-        if b1 not in visited:
-            visited.add(b1)
-            duplicates = []
-            for b2 in beads:
-                if b1 == b2:
-                    duplicates.append(b2)
-            
-            if len(duplicates) == 1:
-                remain_beads.append(b1)
+    for bead, n in counter.items():
+        if n == 1:
+            remain_beads.append(bead)
 
     beads = remain_beads
     # print(remain_beads)
