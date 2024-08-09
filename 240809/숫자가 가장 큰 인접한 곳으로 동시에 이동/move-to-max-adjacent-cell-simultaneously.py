@@ -9,6 +9,7 @@ for _ in range(m):
 
 directions = [(-1, 0), (1, 0), (0, -1), (0, 1)]
 for time in range(t):
+    new_beads = []
     # Move beads
     for r, c in beads:
         r, c = r - 1, c - 1
@@ -22,11 +23,14 @@ for time in range(t):
                 if grid[nx][ny] > max_num:
                     max_nx, max_ny = nx, ny
                     max_num = grid[nx][ny]
+        
+        new_beads.append((max_nx, max_ny))
+
 
     # Eliminate overlapping beads
     visited = set()
     remain_beads = []
-    for bead in beads:
+    for bead in new_beads:
         if bead not in visited:
             visited.add(bead)
             remain_beads.append(bead)
