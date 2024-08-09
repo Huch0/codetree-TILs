@@ -39,7 +39,7 @@ for time in range(t):
             remain_beads.append(b1)
 
     beads = remain_beads
-    print(remain_beads)
+    # print(remain_beads)
 
 # Count the number of remaining beads
 print(len(beads))
